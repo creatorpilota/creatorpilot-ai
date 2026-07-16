@@ -1,63 +1,44 @@
-const API_KEY = "PASTE_YOUR_GEMINI_API_KEY_HERE";
-
 const output = document.getElementById("output");
 const loading = document.getElementById("loading");
 
-async function generate(type) {
-  const prompt = document.getElementById("prompt").value.trim();
+function showLoading() {
+  loading.textContent = "⏳ AI is generating...";
+  output.textContent = "";
+}
 
-  if (!prompt) {
+function hideLoading() {
+  loading.textContent = "";
+}
+
+function getPrompt() {
+  return document.getElementById("prompt").value.trim();
+}
+
+document.getElementById("titleBtn").addEventListener("click", () => {
+  const topic = getPrompt();
+
+  if (!topic) {
     alert("Please enter a YouTube topic.");
     return;
   }
 
-  let instruction = "";
+  showLoading();
 
-  if (type === "title") {
-    instruction = "Generate 10 viral YouTube titles for: " + prompt;
-  } else if (type === "description") {
-    instruction = "Write a professional YouTube description for: " + prompt;
-  } else if (type === "hashtags") {
-    instruction = "Generate 30 viral hashtags for: " + prompt;
-  }
-
-  loading.innerHTML = "Generating...";
-  output.textContent = "";
-
-  try {
-    const response = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: instruction
-                }
-              ]
-            }
-          ]
-        })
-      }
-    );
-
-    const data = await response.json();
-
+  setTimeout(() => {
     output.textContent =
-      data.candidates[0].content.parts[0].text;
+`🔥 Top 10 Viral Titles
 
-  } catch (e) {
-    output.textContent = "Error: " + e.message;
-  }
+1. ${topic} - You Won't Believe What Happened!
+2. Top 10 ${topic} Facts
+3. Everything About ${topic}
+4. Beginner's Guide to ${topic}
+5. ${topic} Explained
+6. Amazing ${topic} Secrets
+7. Why ${topic} Is Trending
+8. ${topic} Tips & Tricks
+9. Best ${topic} Moments
+10. The Future of ${topic}`;
 
-  loading.innerHTML = "";
-}
-
-document.getElementById("titleBtn").onclick = () => generate("title");
-document.getElementById("descBtn").onclick = () => generate("description");
-document.getElementById("hashBtn").onclick = () => generate("hashtags");
+    hideLoading();
+  }, 1000);
+});
