@@ -75,3 +75,26 @@ document.getElementById("titleBtn").addEventListener("click", function () {
     hideLoading();
   }, 1000);
 });
+document.getElementById("descBtn").addEventListener("click", function () {
+  let topic = getTopic();
+
+  if (topic === "") {
+    alert("Please enter a YouTube topic.");
+    return;
+  }
+
+  showLoading();
+
+  setTimeout(function () {
+    document.getElementById("output").textContent =
+`📌 In this video, you'll learn everything about ${topic}.
+
+✅ Easy to understand
+✅ Beginner friendly
+✅ Latest tips and tricks
+
+Don't forget to Like 👍, Comment 💬 and Subscribe 🔔 for more amazing content!`;
+
+    hideLoading();
+  }, 1000);
+});
