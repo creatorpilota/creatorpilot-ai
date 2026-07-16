@@ -42,3 +42,36 @@ document.getElementById("titleBtn").addEventListener("click", () => {
     hideLoading();
   }, 1000);
 });
+function showLoading() {
+  document.getElementById("loading").innerHTML = "⏳ Generating...";
+}
+
+function hideLoading() {
+  document.getElementById("loading").innerHTML = "";
+}
+
+function getTopic() {
+  return document.getElementById("prompt").value.trim();
+}
+
+document.getElementById("titleBtn").addEventListener("click", function () {
+  let topic = getTopic();
+
+  if (topic === "") {
+    alert("Please enter a YouTube topic.");
+    return;
+  }
+
+  showLoading();
+
+  setTimeout(function () {
+    document.getElementById("output").textContent =
+`🔥 Top 10 ${topic} Ideas
+🚀 Best ${topic} Tips
+💥 ${topic} Explained
+⭐ Ultimate ${topic} Guide
+🎯 ${topic} Secrets`;
+
+    hideLoading();
+  }, 1000);
+});
