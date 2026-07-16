@@ -98,3 +98,29 @@ Don't forget to Like 👍, Comment 💬 and Subscribe 🔔 for more amazing cont
     hideLoading();
   }, 1000);
 });
+document.getElementById("hashBtn").addEventListener("click", function () {
+  let topic = getTopic();
+
+  if (topic === "") {
+    alert("Please enter a YouTube topic.");
+    return;
+  }
+
+  showLoading();
+
+  setTimeout(function () {
+    document.getElementById("output").textContent =
+`#${topic.replace(/\s+/g, "")}
+#YouTube
+#Viral
+#Trending
+#ContentCreator
+#AI
+#Shorts
+#VideoMarketing
+#Growth
+#CreatorPilotAI`;
+
+    hideLoading();
+  }, 1000);
+});
