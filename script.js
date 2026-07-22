@@ -50,104 +50,16 @@ document.getElementById("titleBtn").addEventListener("click", () => {
   }
 
   showLoading();
+  (async () => {
+    try {
+        const result = await askAI(
+            `Generate 10 viral YouTube titles about ${topic}. Only return the titles in a numbered list.`
+        );
 
-  setTimeout(() => {
-    output.textContent =
-`🔥 Top 10 Viral Titles
-
-1. ${topic} - You Won't Believe What Happened!
-2. Top 10 ${topic} Facts
-3. Everything About ${topic}
-4. Beginner's Guide to ${topic}
-5. ${topic} Explained
-6. Amazing ${topic} Secrets
-7. Why ${topic} Is Trending
-8. ${topic} Tips & Tricks
-9. Best ${topic} Moments
-10. The Future of ${topic}`;
+        output.textContent = result;
+    } catch (e) {
+        output.textContent = "Error: " + e.message;
+    }
 
     hideLoading();
-  }, 1000);
-});
-function showLoading() {
-  document.getElementById("loading").innerHTML = "⏳ Generating...";
-}
-
-function hideLoading() {
-  document.getElementById("loading").innerHTML = "";
-}
-
-function getTopic() {
-  return document.getElementById("prompt").value.trim();
-}
-
-document.getElementById("titleBtn").addEventListener("click", function () {
-  let topic = getTopic();
-
-  if (topic === "") {
-    alert("Please enter a YouTube topic.");
-    return;
-  }
-
-  showLoading();
-
-  setTimeout(function () {
-    document.getElementById("output").textContent =
-`🔥 Top 10 ${topic} Ideas
-🚀 Best ${topic} Tips
-💥 ${topic} Explained
-⭐ Ultimate ${topic} Guide
-🎯 ${topic} Secrets`;
-
-    hideLoading();
-  }, 1000);
-});
-document.getElementById("descBtn").addEventListener("click", function () {
-  let topic = getTopic();
-
-  if (topic === "") {
-    alert("Please enter a YouTube topic.");
-    return;
-  }
-
-  showLoading();
-
-  setTimeout(function () {
-    document.getElementById("output").textContent =
-`📌 In this video, you'll learn everything about ${topic}.
-
-✅ Easy to understand
-✅ Beginner friendly
-✅ Latest tips and tricks
-
-Don't forget to Like 👍, Comment 💬 and Subscribe 🔔 for more amazing content!`;
-
-    hideLoading();
-  }, 1000);
-});
-document.getElementById("hashBtn").addEventListener("click", function () {
-  let topic = getTopic();
-
-  if (topic === "") {
-    alert("Please enter a YouTube topic.");
-    return;
-  }
-
-  showLoading();
-
-  setTimeout(function () {
-    document.getElementById("output").textContent =
-`#${topic.replace(/\s+/g, "")}
-#YouTube
-#Viral
-#Trending
-#ContentCreator
-#AI
-#Shorts
-#VideoMarketing
-#Growth
-#CreatorPilotAI`;
-
-    hideLoading();
-  }, 1000);
-});
+})();
