@@ -63,3 +63,4 @@ document.getElementById("titleBtn").addEventListener("click", () => {
 
     hideLoading();
 })();
+});
