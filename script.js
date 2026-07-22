@@ -1,6 +1,6 @@
 const output = document.getElementById("output");
 
-const API_KEY = "AIzaSyC7qZo2NqxO6YsHA0cLfHLLo-VxHAVzN5o";
+const API_KEY = AQ.Ab8RN6JInBPr9Gk4kxbZndA61qXyN_7Um3OJsi4LcIpKjhtXCw
 
 async function askAI(prompt) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
