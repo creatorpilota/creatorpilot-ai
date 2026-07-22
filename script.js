@@ -24,7 +24,13 @@ async function askAI(prompt) {
   });
 
   const data = await response.json();
-  return data.candidates[0].content.parts[0].text;
+console.log(data);
+
+if (!data.candidates) {
+    return JSON.stringify(data, null, 2);
+}
+
+return data.candidates[0].content.parts[0].text;
 }
 const loading = document.getElementById("loading");
 
